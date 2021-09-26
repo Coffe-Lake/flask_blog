@@ -16,8 +16,8 @@
 
 ##### 4) Настройка переменных окружения FLASK_APP и FLASK_ENV
     
-    export FLASK_APP="название приложения"
-    export FLASK_ENV=development
+    export FLASK_APP="название приложения" # для windows "set FLASK_APP" 
+    export FLASK_ENV=development # для windows "set FLASK_ENV" 
 
 ##### 5) Запуск сервера
     
