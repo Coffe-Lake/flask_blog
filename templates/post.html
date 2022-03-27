@@ -6,4 +6,14 @@
     <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
     <span class="badge badge-primary">{{ post['created'] }}</span>
     <p>{{ post['content'] }}</p>
+    <hr>
+    <a href="{{ url_for('edit', id=post['id']) }}">
+        <span class="btn btn-warning">Редактировать</span>
+    </a>
+    <hr>
+    <form action="{{ url_for('delete', id=post['id']) }}" method="POST">
+        <input type="submit" value="Удалить пост"
+                class="btn btn-danger"
+                onclick="confirm('Вы уверены, что хотите удалить данный пост?')">
+    </form>
 {% endblock content %}
