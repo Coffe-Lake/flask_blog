@@ -2,11 +2,20 @@
 
 {% block content %}
     <h1>{% block title %}Welcome to FlaskBlog{% endblock title %}</h1>
+    <div class="form-group text-center mt-5 mb-5">
+        <a href="{{ url_for('create') }}" class="btn btn-primary">
+            Создать пост
+        </a>
+    </div>
+                
     {% for post in posts %}
         <a href="{{ url_for('post', post_id=post['id']) }}">
             <h2>{{ post['title'] }}</h2>
         </a>
         <span class="badge badge-primary">{{ post['created'] }}</span>
+        <a href="{{ url_for('edit', id=post['id']) }}">
+            <span class="badge badge-warning">Редактировать</span>
+        </a>
         <hr>
     {% endfor %} 
 {% endblock content %}
