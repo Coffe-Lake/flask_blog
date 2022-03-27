@@ -16,7 +16,7 @@ def get_post(post_id):
     if post is None:
         abort(404)
     return post
-
+ 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'testkeywqe2132131ewqeqw2341rwr12313'
@@ -37,4 +37,16 @@ def post(post_id):
 
 @app.route('/create', methods=('GET', 'POST'))
 def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        
+        if not title:
+            flash('Title is required')
+        else:
+            conn = get_db_connection()
+            conn.execute('INSERT  INTO posts (title, content) VALUES (?, ?)', (title, content))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
     return render_template('create.html')
